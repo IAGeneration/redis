@@ -1,0 +1,40 @@
+name: Deploy reddis on GKE
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: ingeneria-cloud
+  GKE_CLUSTER: ingeneria
+  GKE_ZONE: europe-west1
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    environment: test
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          python-version: '3.8'
+
+      - name: Install the gcloud cli
+        uses: google-github-actions/setup-gcloud@v0
+        with:
+          projectid: ${{ env.PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          export_default_credentials: true
+
+      - name: Deploy to GKE
+        env:
+          GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          echo "${GCP_CREDENTIALS}" > /tmp/keyfile.json
+          gcloud auth activate-service-account --key-file=/tmp/keyfile.json
+          glcoud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.PROJECT_ID }}
+          kubectl apply -f redis-deployment.yaml
+          kubectl apply -f redis-service.yaml
