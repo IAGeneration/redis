@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: redis
 spec:
+  type: NodePort
+  ports:
+    - port: 6379
+      targetPort: 6379
+      nodePort: 30000
   selector:
     app: redis
-  ports:
-    - protocol: TCP
-      port: 6379
-      targetPort: 6379
-  type: ClusterIP
