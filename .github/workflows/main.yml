@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  PROJECT_ID: ingeneria-cloud
-  GKE_CLUSTER: ingeneria
-  GKE_ZONE: europe-west1
+  PROJECT_ID: ia-generation-5
+  GKE_CLUSTER: futurandco
+  GKE_ZONE: europe-west9
 
 jobs:
   deploy:
