@@ -1,4 +1,4 @@
-name: Deploy reddis on GKE
+name: Deploy reddis on GKE_Cluster
 
 on:
   push:
@@ -37,7 +37,6 @@ jobs:
           echo "${GCP_CREDENTIALS}" > /tmp/keyfile.json
           gcloud auth activate-service-account --key-file=/tmp/keyfile.json
           cat /tmp/keyfile.json
-          gcloud secrets versions access 1 --secret="lancedb-secret" > secret.yaml
           gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.PROJECT_ID }}
           kubectl apply -f redis-deployment.yaml 
-          kubectl apply -f secret.yaml 
+          kubectl apply -f redis-service.yaml 
