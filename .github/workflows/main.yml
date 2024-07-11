@@ -3,7 +3,7 @@ name: Deploy reddis on GKE
 on:
   push:
     branches:
-      - main
+      - test
 
 env:
   PROJECT_ID: ia-generation-5
