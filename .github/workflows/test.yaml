@@ -37,6 +37,6 @@ jobs:
           echo "${GCP_CREDENTIALS}" > /tmp/keyfile.json
           gcloud auth activate-service-account --key-file=/tmp/keyfile.json
           cat /tmp/keyfile.json
-          gcloud container clusters get-credentials futurandco-test --zone europe-west9-a --project ia-generation-5
+          gcloud container clusters get-credentials GKE_CLUSTE --zone GKE_ZONE --project PROJECT_ID
           kubectl apply -f redis-deployment.yaml 
           kubectl apply -f redis-service.yaml 
