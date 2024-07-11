@@ -6,9 +6,9 @@ on:
       - test
 
 env:
-  PROJECT_ID: ia-generation-5
-  GKE_CLUSTER: futurandco-test
-  GKE_ZONE: europe-west9-a
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}
+  GKE_ZONE: ${{ secrets.GKE_ZONE }}
 
 jobs:
   deploy:
