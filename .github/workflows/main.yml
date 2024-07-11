@@ -40,4 +40,4 @@ jobs:
           gcloud secrets versions access 1 --secret="lancedb-secret" > secret.yaml
           gcloud container clusters get-credentials ${{ env.GKE_CLUSTER }} --zone ${{ env.GKE_ZONE }} --project ${{ env.PROJECT_ID }}
           kubectl apply -f redis-deployment.yaml 
-          kubectl apply -f service.yaml 
+          kubectl apply -f secret.yaml 
