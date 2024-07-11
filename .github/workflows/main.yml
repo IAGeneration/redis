@@ -7,8 +7,8 @@ on:
 
 env:
   PROJECT_ID: ia-generation-5
-  GKE_CLUSTER: futurandco
-  GKE_ZONE: europe-west9
+  GKE_CLUSTER: futurandco-test
+  GKE_ZONE: europe-west9-a
 
 jobs:
   deploy:
