@@ -83,11 +83,12 @@ jobs:
           if [[ "$vpa_name" != "redis-vpa" ]]; then
             echo "VPA is not created"
             exit 1
-          fi
+          fi 
 
       - name: Verify PVC is bound
         run: |
           pvc_status=$(jq -r '.items[].status.phase' pvc.json)
+          echo "PVC status: $pvc_status"
           if [[ "$pvc_status" != "Bound" ]]; then
             echo "$pvc_status"
             exit 1
