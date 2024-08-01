@@ -75,12 +75,13 @@ jobs:
       - name: Print the vpa.json
         run: |
           cat vpa.json
+          jq . vpa.json
 
       - name: Verify VPA is created
         run: |
           vpa_name=$(jq -r '.metadata.name' vpa.json)
           if [[ "$vpa_name" != "redis-vpa" ]]; then
-            echo "cat vpa.json"
+            echo "VPA is not created"
             exit 1
           fi
 
