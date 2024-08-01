@@ -76,7 +76,7 @@ jobs:
         run: |
           vpa_name=$(jq -r '.metadata.name' vpa.json)
           if [[ "$vpa_name" != "redis-vpa" ]]; then
-            echo "vpa.json"
+            echo "cat vpa.json"
             exit 1
           fi
 
