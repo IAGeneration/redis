@@ -67,18 +67,18 @@ jobs:
             exit 1
           fi
 
-      - name: Verify VPA is created
-        run: |
-          vpa_name=$(jq -r '.metadata.name' vpa.json)
-          if [[ "$vpa_name" != "redis-vpa" ]]; then
-            echo "VPA is not created"
-            exit 1
-          fi
-
       - name: Verify Redis functionality
         run: |
           pod_name=$(jq -r '.items[0].metadata.name' pods.json)
           kubectl exec -it $pod_name -- redis-cli ping 
+
+      - name: Verify VPA is created
+        run: |
+          vpa_name=$(jq -r '.metadata.name' vpa.json)
+          if [[ "$vpa_name" != "redis-vpa" ]]; then
+            echo "vpa.json"
+            exit 1
+          fi
 
       - name: Verify PVC is bound
         run: |
