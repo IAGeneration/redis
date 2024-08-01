@@ -54,7 +54,7 @@ jobs:
       - name: Verify Redis Pods are running 
         run: |
           pod_status=$(jq -r '.items[].status.phase' pods.json)
-          if [ "$pod_status" != "Running" ]; then
+          if [[ "$pod_status" != "Running" ]]; then
             echo "One or more Redis pods are not "Running"
             exit 1
           fi
@@ -62,7 +62,7 @@ jobs:
       - name: Verify PVC is bound
         run: |
           pvc_status=$(jq -r '.items[].status.phase' pvc.json)
-          if [ "$pvc_status" != "Bound" ]; then
+          if [[ "$pvc_status" != "Bound" ]]; then
             echo "PVC is not bound"
             exit 1
           fi
@@ -70,7 +70,7 @@ jobs:
       - name: Verify Service is created
         run: |
           svc_name=$(jq -r '.metadata.name' svc.json)
-          if [ "$svc_name" != "redis" ]; then
+          if [[ "$svc_name" != "redis" ]]; then
             echo "Redis service is not created"
             exit 1
           fi
@@ -78,7 +78,7 @@ jobs:
       - name: Verify VPA is created
         run: |
           vpa_name=$(jq -r '.metadata.name' vpa.json)
-          if [ "$vpa_name" != "redis-vpa"]; then
+          if [[ "$vpa_name" != "redis-vpa"]]; then
             echo "VPA is not created"
             exit 1
           fi
