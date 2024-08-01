@@ -19,3 +19,8 @@ spec:
           image: redis:latest
           ports:
             - containerPort: 6379
+      volumes:
+        - name: redis-storage
+          persistentVolumeClaim:
+            clainName: redis-pvc
+            
