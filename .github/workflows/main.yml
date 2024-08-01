@@ -72,6 +72,10 @@ jobs:
           pod_name=$(jq -r '.items[0].metadata.name' pods.json)
           kubectl exec -it $pod_name -- redis-cli ping 
 
+      - name: Print the vpa.json
+        run: |
+          cat vpa.json
+
       - name: Verify VPA is created
         run: |
           vpa_name=$(jq -r '.metadata.name' vpa.json)
