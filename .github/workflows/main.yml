@@ -70,7 +70,7 @@ jobs:
       - name: Verify VPA is created
         run: |
           vpa_name=$(jq -r '.metadata.name' vpa.json)
-          if [[ "$vpa_name" != "redis-vpa"]]; then
+          if [[ "$vpa_name" != "redis-vpa" ]]; then
             echo "VPA is not created"
             exit 1
           fi
