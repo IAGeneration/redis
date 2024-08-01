@@ -87,7 +87,7 @@ jobs:
 
       - name: Verify PVC is bound
         run: |
-          pvc_status=$(jq -r '.items[].status.phase' pvc.json)
+          pvc_status=$(jq -r '.status.phase' pvc.json)
           echo "PVC status: $pvc_status"
           if [[ "$pvc_status" != "Bound" ]]; then
             echo "$pvc_status"
