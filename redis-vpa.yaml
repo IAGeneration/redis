@@ -3,7 +3,7 @@ kind: VerticalPodAutoscaler
 metadata:
   name: redis-vpa
 spec:
-  tragetRef:
+  targetRef:
     apiVersion: "apps/v1"
     kind: Deployment 
     name: redis
