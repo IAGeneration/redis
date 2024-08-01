@@ -59,14 +59,6 @@ jobs:
             exit 1
           fi
 
-      - name: Verify PVC is bound
-        run: |
-          pvc_status=$(jq -r '.items[].status.phase' pvc.json)
-          if [[ "$pvc_status" != "Bound" ]]; then
-            echo "PVC is not bound"
-            exit 1
-          fi
-
       - name: Verify Service is created
         run: |
           svc_name=$(jq -r '.metadata.name' svc.json)
@@ -87,3 +79,11 @@ jobs:
         run: |
           pod_name=$(jq -r '.items[0].metadata.name' pods.json)
           kubectl exec -it $pod_name -- redis-cli ping 
+
+      - name: Verify PVC is bound
+        run: |
+          pvc_status=$(jq -r '.items[].status.phase' pvc.json)
+          if [[ "$pvc_status" != "Bound" ]]; then
+            echo "$pvc_status"
+            exit 1
+          fi
