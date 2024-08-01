@@ -49,7 +49,7 @@ jobs:
           kubectl get pods -l app=redis -o json > pods.json
           kubectl get pvc -l app=redis -o json > pvc.json
           kubectl get svc redis -o json > svc.json
-          kubectl get vpa redis-vpa > vpa.json
+          kubectl get vpa redis-vpa -o json > vpa.json
 
       - name: Verify Redis Pods are running 
         run: |
