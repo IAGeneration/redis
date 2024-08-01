@@ -55,7 +55,7 @@ jobs:
         run: |
           pod_status=$(jq -r '.items[].status.phase' pods.json)
           if [[ "$pod_status" != "Running" ]]; then
-            echo "One or more Redis pods are not "Running"
+            echo "One or more Redis pods are not Running"
             exit 1
           fi
 
