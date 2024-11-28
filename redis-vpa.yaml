@@ -9,3 +9,13 @@ spec:
     name: redis
   updatePolicy:
     updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+      - containerName: redis 
+        minAllowed: 
+          cpu: "200m"
+          memory: "500Mi"
+        maxAllowed:
+          cpu: "1" 
+          memory: "2Gi"
+        controlledResources: ["cpu","memory"]
