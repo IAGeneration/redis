@@ -42,7 +42,7 @@ jobs:
           ./redis-pvc.sh
           kubectl apply -f redis-deployment.yaml
           #kubectl apply -f redis-service.yaml
-          #kubectl apply -f redis-vpa.yaml
+          kubectl apply -f redis-vpa.yaml
 
       - name: Test Redis Deployment 
         run: |
